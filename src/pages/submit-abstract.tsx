@@ -13,7 +13,17 @@ export default function SubmitAbstract() {
           Sections obligatoires : Introduction, Méthodes, Résultats, Conclusion<br />
           Indiquer <strong>orale</strong> ou <strong>poster (80×110 cm)</strong>
         </p>
-        <form>
+        <form
+          name="SoumissionRésumé"
+          method="POST"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          action="/success"
+        >
+          <input type="hidden" name="form-name" value="SoumissionRésumé" />
+          <div style={{ display: "none" }}>
+            <label>Ne pas remplir: <input name="bot-field" /></label>
+          </div>
           <div>
             <label htmlFor="titre">Titre du résumé</label><br />
             <input type="text" id="titre" name="titre" required />
