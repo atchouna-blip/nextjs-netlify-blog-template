@@ -13,7 +13,9 @@ export default function Navigation() {
         <ul>
           <li>
             <Link href="/">
-              <a className={router.pathname === "/" ? "active" : null}>about</a>
+              <a className={router.pathname === "/" ? "active" : null}>
+                about
+              </a>
             </Link>
           </li>
           <li>
@@ -27,65 +29,73 @@ export default function Navigation() {
               </a>
             </Link>
           </li>
+          <li>
+            <Link href="/submit-abstract">
+              <a
+                className={
+                  router.pathname === "/submit-abstract" ? "active" : null
+                }
+              >
+                soumettre résumé
+              </a>
+            </Link>
+          </li>
         </ul>
-        <style jsx>
-          {`
+        <style jsx>{`
+          .container {
+            width: 0;
+          }
+          ul {
+            opacity: 0;
+            width: 100%;
+            height: 100vh;
+            text-align: right;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            position: fixed;
+            top: 0;
+            background-color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            z-index: 1;
+            transform: translateY(100%);
+            transition: opacity 200ms;
+          }
+          .active ul {
+            opacity: 1;
+            transform: translateY(0);
+          }
+          li {
+            margin-bottom: 1.75rem;
+            font-size: 2rem;
+            padding: 0 1.5rem 0 0;
+          }
+          li:last-child {
+            margin-bottom: 0;
+          }
+          .active {
+            color: #222;
+          }
+          @media (min-width: 769px) {
             .container {
-              width: 0;
+              width: 10rem;
+              display: block;
             }
             ul {
-              opacity: 0;
-              width: 100%;
-              height: 100vh;
-              text-align: right;
-              list-style: none;
-              margin: 0;
-              padding: 0;
-              position: fixed;
-              top: 0;
-              background-color: #fff;
-              display: flex;
-              flex-direction: column;
-              justify-content: center;
-              z-index: 1;
-              transform: translateY(100%);
-              transition: opacity 200ms;
-            }
-            .active ul {
               opacity: 1;
+              width: 10rem;
+              top: auto;
+              display: block;
               transform: translateY(0);
             }
             li {
-              margin-bottom: 1.75rem;
-              font-size: 2rem;
-              padding: 0 1.5rem 0 0;
+              font-size: 1rem;
+              padding: 0;
             }
-            li:last-child {
-              margin-bottom: 0;
-            }
-            .active {
-              color: #222;
-            }
-
-            @media (min-width: 769px) {
-              .container {
-                width: 7rem;
-                display: block;
-              }
-              ul {
-                opacity: 1;
-                width: 7rem;
-                top: auto;
-                display: block;
-                transform: translateY(0);
-              }
-              li {
-                font-size: 1rem;
-                padding: 0;
-              }
-            }
-          `}
-        </style>
+          }
+        `}</style>
       </div>
     </>
   );
