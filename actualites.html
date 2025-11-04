@@ -1,64 +1,46 @@
-<!doctype html>
-<html lang="fr">
-<head>
-  <title>Actualités — JSB3</title>
+import Layout from "../components/Layout";
+import BasicMeta from "../components/meta/BasicMeta";
 
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <link rel="icon" href="/LOGO JSB3.png" />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Lato:wght@400;500;700&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = { theme:{ extend:{ colors:{ jsb:{ bleu:'#003366', vert:'#4CAF50', gris:'#F2F2F2', accent:'#00B5B2', orange:'#FF9800' } }, fontFamily:{ sans:['Lato','ui-sans-serif','system-ui'], display:['Montserrat','ui-sans-serif'] } } } }
-  </script>
+const news = [
+  {
+    title: "JSB3 — Dates clés annoncées !",
+    date: "01/10/2025",
+    excerpt: "Le calendrier des soumissions de résumés et les dates de l'événement sont désormais en ligne.",
+    link: "#"
+  },
+  {
+    title: "Conférenciers internationaux confirmés",
+    date: "15/10/2025",
+    excerpt: "Découvrez la liste des intervenants majeurs pour cette édition JSB3.",
+    link: "#"
+  }
+  // Ajoute les actus importantes JSB3 ici !
+];
 
-</head>
-<body class="font-sans text-slate-800 bg-white">
-
-<header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-slate-200">
-  <div class="max-w-7xl mx-auto px-4 py-3 flex items-center gap-4">
-    <a href="/#accueil" class="flex items-center gap-3">
-      <img src="/LOGO JSB3.png" class="w-9 h-9" alt="JSB3" />
-      <span class="font-display font-semibold text-jsb-bleu">JSB3 Bangui</span>
-    </a>
-    <nav class="ml-auto hidden md:flex gap-6">
-      <a href="/#apropos" class="hover:text-jsb-accent">À propos</a>
-      <a href="/#dates" class="hover:text-jsb-accent">Dates</a>
-      <a href="/soumettre.html" class="text-jsb-bleu font-medium">Soumettre</a>
-      <a href="/conferenciers.html" class="hover:text-jsb-accent">Conférenciers</a>
-      <a href="/actualites.html" class="hover:text-jsb-accent">Actualités</a>
-      <a href="/#contact" class="hover:text-jsb-accent">Contact</a>
-    </nav>
-  </div>
-</header>
-
-<section class="py-12 bg-jsb-gris">
-  <div class="max-w-7xl mx-auto px-4">
-    <h1 class="font-display text-3xl md:text-4xl text-jsb-bleu mb-6">Actualités</h1>
-    <div id="list" class="grid md:grid-cols-3 gap-6"></div>
-  </div>
-</section>
-<script>
-async function init(){
-  const data = await (await fetch('/content/news.json')).json();
-  const items = data.items.sort((a,b)=> (b.date > a.date ? 1 : -1));
-  const grid = document.getElementById('list');
-  items.forEach(n=>{
-    const card = document.createElement('article');
-    card.className="bg-white rounded-2xl overflow-hidden shadow border border-slate-200 flex flex-col";
-    card.innerHTML = `
-      <img src="${n.cover || '/LOGO JSB3.png'}" alt="" class="w-full h-44 object-cover" />
-      <div class="p-5 grow">
-        <div class="text-sm text-slate-500 mb-1">${n.date}</div>
-        <h3 class="font-display text-xl text-jsb-bleu mb-2">${n.title}</h3>
-        <p class="text-slate-700">${n.excerpt || ''}</p>
-        <div class="mt-3 text-slate-700">${n.body || ''}</div>
+export default function Actualites() {
+  return (
+    <Layout>
+      <BasicMeta url="/actualites" />
+      <div className="container">
+        <h1>Actualités JSB3</h1>
+        <ul style={{padding: 0, listStyle: "none"}}>
+          {news.map(item => (
+            <li key={item.title} style={{
+              borderBottom: "1px solid #eee",
+              paddingBottom: "1.2em",
+              marginBottom: "2em"
+            }}>
+              <h2 style={{margin: 0}}>{item.title}</h2>
+              <small style={{color: "#888"}}>{item.date}</small>
+              <p>{item.excerpt}</p>
+              {/* Remplace # par le lien d'une page d’article au besoin */}
+              {item.link !== "#" && (
+                <a href={item.link}>Lire la suite</a>
+              )}
+            </li>
+          ))}
+        </ul>
       </div>
-    `;
-    grid.appendChild(card);
-  });
+    </Layout>
+  );
 }
-init();
-</script>
-</body>
-</html>
