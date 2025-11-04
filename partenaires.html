@@ -1,66 +1,52 @@
-<!doctype html>
-<html lang="fr">
-<head>
-  <title>Partenaires & Sponsors — JSB3</title>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <link rel="icon" href="/LOGO JSB3.png" />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Lato:wght@400;500;700&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="font-sans text-slate-800 bg-white">
+import Layout from "../components/Layout";
+import BasicMeta from "../components/meta/BasicMeta";
 
-<header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-slate-200">
-  <div class="max-w-7xl mx-auto px-4 py-3 flex items-center gap-4">
-    <a href="/#accueil" class="flex items-center gap-3">
-      <img src="/LOGO JSB3.png" class="w-9 h-9" alt="JSB3" />
-      <span class="font-display font-semibold text-jsb-bleu">JSB3 Bangui</span>
-    </a>
-    <nav class="ml-auto hidden md:flex gap-6">
-      <a href="/#apropos" class="hover:text-jsb-accent">À propos</a>
-      <a href="/programme.html" class="hover:text-jsb-accent">Programme</a>
-      <a href="/soumettre.html" class="hover:text-jsb-accent">Soumettre</a>
-      <a href="/conferenciers.html" class="hover:text-jsb-accent">Conférenciers</a>
-      <a href="/partenaires.html" class="hover:text-jsb-accent">Partenaires</a>
-      <a href="/actualites.html" class="hover:text-jsb-accent">Actualités</a>
-      <a href="/#contact" class="hover:text-jsb-accent">Contact</a>
-    </nav>
-  </div>
-</header>
+const partners = [
+  {
+    name: "Institut Pasteur de Bangui",
+    logo: "/images/partner_pasteur.png",
+    description: "Centre de recherche biomédicale et organisation cofondatrice de JSB3."
+  },
+  {
+    name: "Université de Bangui",
+    logo: "/images/partner_univbangui.png",
+    description: "Partenaire académique, appui scientifique à One Health Bangui."
+  },
+  {
+    name: "INRB",
+    logo: "/images/partner_inrb.png",
+    description: "Institut National de Recherche Biomédicale, partenaire scientifique régional JSB3."
+  }
+  // Ajoute ici les autres partenaires
+];
 
-<section class="py-12 bg-jsb-gris">
-  <div class="max-w-7xl mx-auto px-4">
-    <h1 class="font-display text-3xl md:text-4xl text-jsb-bleu mb-4">Partenaires & Sponsors</h1>
-    <p class="text-slate-700 mb-8">Merci à toutes les organisations qui soutiennent les 3ᵉ Journées Scientifiques de Bangui.</p>
-    <div id="tiers"></div>
-    <div class="mt-12">
-      <a id="partnerKit" href="#" target="_blank" class="inline-block bg-jsb-accent text-white px-5 py-3 rounded-xl">Télécharger le kit partenaires</a>
-    </div>
-  </div>
-</section>
-<script>
-async function init(){
-  const data = await (await fetch('/content/partners.json')).json();
-  const conf = await (await fetch('/content/site.json')).json().catch(()=>null);
-  const list = document.getElementById('tiers');
-  if (conf && conf.urls && conf.urls.partnersPdf) document.getElementById('partnerKit').href = conf.urls.partnersPdf;
-  data.tiers.forEach(t=>{
-    const sec = document.createElement('section');
-    sec.className="mb-10";
-    sec.innerHTML = `<h2 class="font-display text-2xl text-jsb-bleu mb-3">${t.name}</h2>`;
-    const grid = document.createElement('div'); grid.className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4";
-    (t.items||[]).forEach(p=>{
-      const a = document.createElement('a');
-      a.href = p.url || '#'; a.target="_blank"; a.rel="noopener";
-      a.className="bg-white rounded-xl border border-slate-200 p-4 flex items-center justify-center hover:shadow";
-      a.innerHTML = `<img src="${p.logo || '/LOGO JSB3.png'}" alt="${p.name||''}" class="max-h-16 object-contain" />`;
-      grid.appendChild(a);
-    });
-    sec.appendChild(grid);
-    list.appendChild(sec);
-  });
+export default function Partenaires() {
+  return (
+    <Layout>
+      <BasicMeta url="/partenaires" />
+      <div className="container">
+        <h1>Partenaires JSB3</h1>
+        <div style={{display: "flex", flexWrap: "wrap"}}>
+          {partners.map(partner => (
+            <div key={partner.name} style={{
+              width: "260px",
+              margin: "14px",
+              padding: "18px",
+              textAlign: "center",
+              border: "1px solid #eee",
+              borderRadius: "8px"
+            }}>
+              <img
+                src={partner.logo}
+                alt={`Logo ${partner.name}`}
+                style={{maxWidth: "120px", margin: "0 auto 12px"}}
+              />
+              <h2 style={{fontSize: "1.1em"}}>{partner.name}</h2>
+              <p>{partner.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </Layout>
+  );
 }
-init();
-</script>
-</body>
-</html>
