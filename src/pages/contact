@@ -15,7 +15,18 @@ export default function Contact() {
           <li>Téléphone : +236 123 45 67 89</li>
           <li>Adresse : Institut Pasteur de Bangui, BP 923, Bangui, RCA</li>
         </ul>
-        <form style={{maxWidth: '400px', marginTop: '2em'}}>
+        <form
+          name="ContactJSB3"
+          method="POST"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          action="/success"
+          style={{maxWidth: '400px', marginTop: '2em'}}
+        >
+          <input type="hidden" name="form-name" value="ContactJSB3" />
+          <div style={{ display: "none" }}>
+            <label>Ne pas remplir: <input name="bot-field" /></label>
+          </div>
           <div>
             <label htmlFor="nom">Nom</label><br />
             <input type="text" id="nom" name="nom" required />
