@@ -1,0 +1,36 @@
+import Layout from "../components/Layout";
+import BasicMeta from "../components/meta/BasicMeta";
+
+export default function Contact() {
+  return (
+    <Layout>
+      <BasicMeta url="/contact" />
+      <div className="container">
+        <h1>Contact JSB3</h1>
+        <p>
+          Pour toute question, suggestion ou information complémentaire :
+        </p>
+        <ul>
+          <li>Email : <a href="mailto:jsb3@pasteur-bangui.org">jsb3@pasteur-bangui.org</a></li>
+          <li>Téléphone : +236 123 45 67 89</li>
+          <li>Adresse : Institut Pasteur de Bangui, BP 923, Bangui, RCA</li>
+        </ul>
+        <form style={{maxWidth: '400px', marginTop: '2em'}}>
+          <div>
+            <label htmlFor="nom">Nom</label><br />
+            <input type="text" id="nom" name="nom" required />
+          </div>
+          <div>
+            <label htmlFor="email">Email</label><br />
+            <input type="email" id="email" name="email" required />
+          </div>
+          <div>
+            <label htmlFor="message">Message</label><br />
+            <textarea id="message" name="message" rows={4} required />
+          </div>
+          <button type="submit" style={{marginTop: '1em'}}>Envoyer</button>
+        </form>
+      </div>
+    </Layout>
+  );
+}
