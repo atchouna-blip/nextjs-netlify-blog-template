@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <title>Programme — JSB3</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="icon" href="/LOGO JSB3.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Lato:wght@400;500;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="font-sans text-slate-800 bg-white">
+
+<header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-slate-200">
+  <div class="max-w-7xl mx-auto px-4 py-3 flex items-center gap-4">
+    <a href="/#accueil" class="flex items-center gap-3">
+      <img src="/LOGO JSB3.png" class="w-9 h-9" alt="JSB3" />
+      <span class="font-display font-semibold text-jsb-bleu">JSB3 Bangui</span>
+    </a>
+    <nav class="ml-auto hidden md:flex gap-6">
+      <a href="/#apropos" class="hover:text-jsb-accent">À propos</a>
+      <a href="/programme.html" class="hover:text-jsb-accent">Programme</a>
+      <a href="/soumettre.html" class="hover:text-jsb-accent">Soumettre</a>
+      <a href="/conferenciers.html" class="hover:text-jsb-accent">Conférenciers</a>
+      <a href="/partenaires.html" class="hover:text-jsb-accent">Partenaires</a>
+      <a href="/actualites.html" class="hover:text-jsb-accent">Actualités</a>
+      <a href="/#contact" class="hover:text-jsb-accent">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="py-12 bg-jsb-gris">
+  <div class="max-w-7xl mx-auto px-4">
+    <h1 class="font-display text-3xl md:text-4xl text-jsb-bleu mb-4">Programme</h1>
+    <p class="text-slate-700 mb-6">Consultez le planning par journée. Utilisez les filtres pour afficher une piste thématique.</p>
+
+    <div id="filters" class="flex flex-wrap gap-2 mb-6"></div>
+
+    <div id="days"></div>
+  </div>
+</section>
+<script>
+let PROGRAM=null, trackFilter=null;
+function badge(type) {
+  const map={'pleniere':'bg-indigo-100 text-indigo-700','keynote':'bg-emerald-100 text-emerald-700','session':'bg-slate-100 text-slate-700','posters':'bg-amber-100 text-amber-700','speed':'bg-fuchsia-100 text-fuchsia-700','table-ronde':'bg-cyan-100 text-cyan-700','accueil':'bg-slate-100 text-slate-700','cloture':'bg-slate-100 text-slate-700'};
+  return map[type]||'bg-slate-100 text-slate-700'
+}
+function render() {
+  const wrap = document.getElementById('days'); wrap.innerHTML='';
+  PROGRAM.days.forEach(d=>{
+    const day = document.createElement('section');
+    day.className="mb-10";
+    day.innerHTML = `<h2 class="font-display text-2xl text-jsb-bleu mb-3">📅 ${d.label}</h2>`;
+    const list = document.createElement('div'); list.className="space-y-3";
+    d.slots.filter(s=> !trackFilter || !s.track || s.track===trackFilter).forEach(s=>{
+      const trackObj = PROGRAM.tracks.find(t=>t.id===s.track);
+      const trackChip = trackObj? `<span class="text-xs rounded-full px-2 py-1" style="background:${trackObj.color}20;color:${trackObj.color}">${trackObj.label}</span>` : '';
+      const card = document.createElement('div');
+      card.className="bg-white rounded-xl p-4 shadow border border-slate-200 flex gap-4 items-start";
+      card.innerHTML = `
+        <div class="w-24 shrink-0 text-center">
+          <div class="text-lg font-semibold text-jsb-bleu">${s.time}</div>
+          ${trackChip}
+        </div>
+        <div class="grow">
+          <div class="flex items-center gap-2 mb-1">
+            <span class="text-xs px-2 py-1 rounded-full ${badge(s.type)} capitalize">${s.type.replace('-', ' ')}</span>
+            <span class="text-slate-400">•</span>
+            <span class="text-slate-600 text-sm">${s.room||''}</span>
+          </div>
+          <h3 class="font-display text-xl text-jsb-bleu mb-1">${s.title}</h3>
+          ${ s.speakers ? `<div class="text-slate-700 text-sm">`+ s.speakers.join(', ') +`</div>` : '' }
+          ${ s.abstract ? `<p class='text-slate-700 mt-1'>${s.abstract}</p>` : '' }
+        </div>`;
+      list.appendChild(card);
+    });
+    day.appendChild(list); wrap.appendChild(day);
+  });
+}
+async function init(){
+  PROGRAM = await (await fetch('/content/program.json')).json();
+  const filters = document.getElementById('filters');
+  const btnAll = document.createElement('button');
+  btnAll.className="px-3 py-2 bg-white rounded-lg border border-slate-200 hover:bg-slate-50";
+  btnAll.textContent="Toutes les pistes";
+  btnAll.onclick=()=>{ trackFilter=null; render(); };
+  filters.appendChild(btnAll);
+  PROGRAM.tracks.forEach(t=>{
+    const b=document.createElement('button');
+    b.className="px-3 py-2 rounded-lg border hover:opacity-90";
+    b.style.background=`${t.color}20`; b.style.borderColor=t.color; b.style.color=t.color;
+    b.textContent=t.label;
+    b.onclick=()=>{ trackFilter=t.id; render(); };
+    filters.appendChild(b);
+  });
+  render();
+}
+init();
+</script>
+</body>
+</html>

@@ -1,6 +1,19 @@
-[build]
-  publish = ".next"
-  command = "npm run build"
 
-[build.environment]
-  NODE_VERSION = "16"
+[build]
+  publish = "jsb3-site/jsb3-site-starter-v3"
+  command = ""
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "SAMEORIGIN"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+# Force HTTPS
+[[redirects]]
+  from = "http://jsb3bangui.org/*"
+  to = "https://jsb3bangui.org/:splat"
+  status = 301
+  force = true

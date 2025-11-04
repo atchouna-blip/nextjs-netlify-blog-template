@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <title>Conférenciers invités — JSB3</title>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="icon" href="/LOGO JSB3.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Lato:wght@400;500;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme:{ extend:{ colors:{ jsb:{ bleu:'#003366', vert:'#4CAF50', gris:'#F2F2F2', accent:'#00B5B2', orange:'#FF9800' } }, fontFamily:{ sans:['Lato','ui-sans-serif','system-ui'], display:['Montserrat','ui-sans-serif'] } } } }
+  </script>
+
+</head>
+<body class="font-sans text-slate-800 bg-white">
+
+<header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-slate-200">
+  <div class="max-w-7xl mx-auto px-4 py-3 flex items-center gap-4">
+    <a href="/#accueil" class="flex items-center gap-3">
+      <img src="/LOGO JSB3.png" class="w-9 h-9" alt="JSB3" />
+      <span class="font-display font-semibold text-jsb-bleu">JSB3 Bangui</span>
+    </a>
+    <nav class="ml-auto hidden md:flex gap-6">
+      <a href="/#apropos" class="hover:text-jsb-accent">À propos</a>
+      <a href="/#dates" class="hover:text-jsb-accent">Dates</a>
+      <a href="/soumettre.html" class="text-jsb-bleu font-medium">Soumettre</a>
+      <a href="/conferenciers.html" class="hover:text-jsb-accent">Conférenciers</a>
+      <a href="/actualites.html" class="hover:text-jsb-accent">Actualités</a>
+      <a href="/#contact" class="hover:text-jsb-accent">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="py-12 bg-jsb-gris">
+  <div class="max-w-7xl mx-auto px-4">
+    <h1 class="font-display text-3xl md:text-4xl text-jsb-bleu mb-6">Conférenciers invités</h1>
+    <div id="grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+  </div>
+</section>
+<script>
+async function init(){
+  const data = await (await fetch('/content/speakers.json')).json();
+  const wrap = document.getElementById('grid');
+  data.items.forEach(s=>{
+    const card = document.createElement('div');
+    card.className="bg-white rounded-2xl p-6 shadow border border-slate-200";
+    card.innerHTML = `
+      <img src="${s.photo || '/LOGO JSB3.png'}" alt="${s.name}" class="w-full h-48 object-cover rounded-lg mb-4" />
+      <h3 class="font-display text-xl text-jsb-bleu">${s.name}</h3>
+      <p class="text-slate-700">${s.role}</p>
+      <p class="text-slate-600 text-sm mb-3">${s.institution}</p>
+      <div class="text-slate-700">${s.bio || ''}</div>
+    `;
+    wrap.appendChild(card);
+  });
+}
+init();
+</script>
+</body>
+</html>

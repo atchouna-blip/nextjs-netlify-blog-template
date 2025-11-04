@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title id="meta-title">JSB3 — Journées Scientifiques de Bangui</title>
+  <meta id="meta-desc" name="description" content="Site JSB3" />
+  <link rel="icon" href="/LOGO JSB3.png" />
+  <meta property="og:title" content="JSB3 — Journées Scientifiques de Bangui" />
+  <meta property="og:description" content="JSB3 Bangui — One Health" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="/ee3fc8b7-2e9e-4ffc-bbf3-0458b2515d56.png" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Lato:wght@400;500;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            jsb: {
+              bleu: '#003366',
+              vert: '#4CAF50',
+              gris: '#F2F2F2',
+              accent: '#00B5B2',
+              orange: '#FF9800'
+            }
+          },
+          fontFamily: {
+            sans: ['Lato', 'ui-sans-serif', 'system-ui'],
+            display: ['Montserrat','ui-sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    html{scroll-behavior:smooth}
+    .shadow-soft{box-shadow:0 10px 30px rgba(0,0,0,.08)}
+    .focus-ring:focus{outline:3px solid #00B5B2; outline-offset:2px}
+  </style>
+</head>
+<body class="font-sans text-slate-800 bg-white">
+  <a href="#accueil" class="sr-only focus:not-sr-only focus-ring absolute left-2 top-2 bg-white p-2 rounded">Aller au contenu</a>
+
+  <header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center gap-4">
+      <a href="#accueil" class="flex items-center gap-3">
+        <img src="/LOGO JSB3.png" alt="Logo JSB3" class="w-9 h-9" />
+        <span class="font-display font-semibold text-jsb-bleu">JSB3 Bangui</span>
+      </a>
+      <nav class="ml-auto hidden md:flex gap-6">
+        <a href="#apropos" class="hover:text-jsb-accent">À propos</a>
+        <a href="#dates" class="hover:text-jsb-accent">Dates</a>
+        <a href="#participer" class="hover:text-jsb-accent">Participer</a>
+        <a href="#programme" class="hover:text-jsb-accent">Programme</a>
+        <a href="/soumettre.html" class="hover:text-jsb-accent">Soumettre</a>
+        <a href="/conferenciers.html" class="hover:text-jsb-accent">Conférenciers</a>
+        <a href="/actualites.html" class="hover:text-jsb-accent">Actualités</a>
+        <a href="#partenaires" class="hover:text-jsb-accent">Partenaires</a>
+        <a href="#faq" class="hover:text-jsb-accent">FAQ</a>
+        <a href="#contact" class="hover:text-jsb-accent">Contact</a>
+      </nav>
+      <div class="ml-4 hidden md:flex gap-2">
+        <a id="btn-register" class="focus-ring bg-jsb-orange text-white px-4 py-2 rounded-lg shadow-soft" href="#" aria-label="S’inscrire">S’inscrire</a>
+        <a id="btn-submit" class="focus-ring bg-jsb-accent text-white px-4 py-2 rounded-lg shadow-soft" href="#" aria-label="Soumettre un résumé">Soumettre</a>
+      </div>
+    </div>
+  </header>
+
+  <section id="accueil" class="relative">
+    <img src="/ee3fc8b7-2e9e-4ffc-bbf3-0458b2515d56.png" alt="Bannière JSB3" class="w-full h-[420px] md:h-[520px] object-cover" />
+    <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+
+    <div class="absolute inset-0 flex items-center">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="bg-white/90 p-6 md:p-10 rounded-2xl shadow-soft max-w-3xl">
+          <p class="text-sm text-slate-600" id="venue"></p>
+          <h1 class="font-display text-3xl md:text-5xl font-bold text-jsb-bleu leading-tight" id="eventName"></h1>
+          <h2 class="mt-3 text-xl md:text-2xl font-semibold text-jsb-vert" id="theme"></h2>
+          <p class="mt-2 text-slate-700" id="datesDisplay"></p>
+          <div class="mt-5 flex flex-wrap gap-3">
+            <a id="cta-hero-register" class="focus-ring bg-jsb-orange text-white px-5 py-3 rounded-xl" href="#">S’inscrire</a>
+            <a id="cta-hero-submit" class="focus-ring bg-jsb-accent text-white px-5 py-3 rounded-xl" href="#">Soumettre un résumé</a>
+          </div>
+          <div class="mt-6 flex items-center gap-6">
+            <img src="/IP-PN Bangui (3).png" alt="Institut Pasteur de Bangui" class="h-10 w-auto" />
+            <img src="/télécharger.jpg" alt="Université de Bangui" class="h-10 w-auto" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="apropos" class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <h3 class="font-display text-3xl text-jsb-bleu mb-4">À propos</h3>
+      <p class="text-lg leading-relaxed">
+        Les 3ᵉ Journées Scientifiques de Bangui (JSB3) réunissent chercheur·e·s, clinicien·ne·s, décideur·se·s et partenaires autour d’une approche intégrée <em>One Health</em>.
+        L’événement est co-organisé par l’Institut Pasteur de Bangui et l’Université de Bangui.
+      </p>
+      <ul id="subthemes" class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-4"></ul>
+    </div>
+  </section>
+
+  <section id="dates" class="py-16 bg-jsb-gris">
+    <div class="max-w-7xl mx-auto px-4">
+      <h3 class="font-display text-3xl text-jsb-bleu mb-6">Dates importantes</h3>
+      <div id="milestones" class="grid md:grid-cols-2 lg:grid-cols-4 gap-4"></div>
+    </div>
+  </section>
+
+  <section id="participer" class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <h3 class="font-display text-3xl text-jsb-bleu mb-6">Participer</h3>
+
+      <div class="grid lg:grid-cols-2 gap-6">
+        <div class="p-6 rounded-2xl border border-slate-200 shadow-soft">
+          <h4 class="font-display text-2xl text-jsb-bleu mb-3">S’inscrire</h4>
+          <table class="w-full text-left text-slate-700 text-sm">
+            <tbody id="pricing"></tbody>
+          </table>
+          <p id="pricingNote" class="mt-2 text-sm text-slate-600"></p>
+          <a id="cta-register" class="mt-4 inline-block bg-jsb-orange text-white px-5 py-3 rounded-xl focus-ring" href="#">Aller au formulaire</a>
+        </div>
+
+        <div class="p-6 rounded-2xl border border-slate-200 shadow-soft">
+          <h4 class="font-display text-2xl text-jsb-bleu mb-3">Soumettre un résumé</h4>
+          <p>Fenêtre de soumission : <span class="font-semibold">01/10/2025 → 31/12/2025</span>.</p>
+          <ul class="list-disc ml-6 mt-3 text-slate-700">
+            <li>Résumé ≤ 300 mots (FR/EN), Times 11, interligne 1,15</li>
+            <li>Sections : Introduction, Méthodes, Résultats, Conclusion</li>
+            <li>Indiquer <em>orale</em> ou <em>poster</em> (80×110 cm)</li>
+          </ul>
+          <a id="cta-submit" class="mt-4 inline-block bg-jsb-accent text-white px-5 py-3 rounded-xl focus-ring" href="#">Déposer maintenant</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="programme" class="py-16 bg-jsb-gris">
+    <div class="max-w-7xl mx-auto px-4">
+      <h3 class="font-display text-3xl text-jsb-bleu mb-6">Programme</h3>
+      <div id="program" class="grid md:grid-cols-3 gap-6"></div>
+      <div class="mt-6 flex gap-3">
+        <a id="link-program" class="bg-white border border-slate-300 px-4 py-2 rounded-lg focus-ring" href="#" target="_blank" rel="noopener">Télécharger le programme (PDF)</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="partenaires" class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <h3 class="font-display text-3xl text-jsb-bleu mb-6">Partenaires & Co-organisation</h3>
+      <div id="coorg" class="flex flex-wrap items-center gap-6 mb-8"></div>
+      <div id="partners" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6"></div>
+      <div class="mt-6">
+        <a id="link-partners" class="bg-white border border-slate-300 px-4 py-2 rounded-lg focus-ring" href="#" target="_blank" rel="noopener">Dossier partenaires (PDF)</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="py-16 bg-jsb-gris">
+    <div class="max-w-7xl mx-auto px-4">
+      <h3 class="font-display text-3xl text-jsb-bleu mb-6">FAQ</h3>
+    <div id="faqList" class="space-y-3"></div>
+    </div>
+  </section>
+
+  
+  
+  <section id="partnersStrip" class="py-14 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="flex items-center justify-between mb-6">
+        <h3 class="font-display text-3xl text-jsb-bleu">Nos partenaires</h3>
+        <a href="/partenaires.html" class="text-jsb-accent underline">Voir tous</a>
+      </div>
+      <div id="partnersGrid" class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-4 items-center"></div>
+    </div>
+  </section>
+<section id="actus" class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="flex items-center justify-between mb-6">
+        <h3 class="font-display text-3xl text-jsb-bleu">Actualités</h3>
+        <a href="/actualites.html" class="text-jsb-accent underline">Toutes les actus</a>
+      </div>
+      <div id="newsGrid" class="grid md:grid-cols-3 gap-6"></div>
+    </div>
+  </section>
+<section id="contact" class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <h3 class="font-display text-3xl text-jsb-bleu mb-6">Contact</h3>
+      <div id="contactBlock" class="grid md:grid-cols-2 gap-6">
+        <div>
+          <p class="text-slate-700" id="address"></p>
+          <p class="text-slate-700" id="phone"></p>
+          <p class="text-slate-700">Email : <a id="email" href="#" class="text-jsb-accent underline">—</a></p>
+        </div>
+        <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/success.html" class="p-6 rounded-2xl border border-slate-200 shadow-soft">
+          <input type="hidden" name="form-name" value="contact" />
+          <p class="hidden"><label>Ne pas remplir: <input name="bot-field" /></label></p>
+          <label class="block text-sm mb-1">Nom</label>
+          <input class="w-full border rounded p-2 mb-3" required />
+          <label class="block text-sm mb-1">Email</label>
+          <input class="w-full border rounded p-2 mb-3" type="email" required />
+          <label class="block text-sm mb-1">Message</label>
+          <textarea class="w-full border rounded p-2 mb-4" rows="4" required></textarea>
+          <button class="bg-jsb-accent text-white px-4 py-2 rounded-lg">Envoyer</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer class="py-8 border-t text-center text-slate-600">
+    © 2025–2026 JSB3 — Tous droits réservés.
+  </footer>
+
+  <script>
+    async function load() {
+      const res = await fetch('/content/site.json');
+      const data = await res.json();
+
+      document.getElementById('meta-title').textContent = data.seo.title;
+      document.getElementById('meta-desc').setAttribute('content', data.seo.description);
+      document.querySelector('meta[property="og:title"]').setAttribute('content', data.seo.title);
+      document.querySelector('meta[property="og:description"]').setAttribute('content', data.seo.description);
+      document.querySelector('meta[property="og:image"]').setAttribute('content', data.seo.ogImage || '/LOGO JSB3.png');
+
+      const ld = {
+        "@context":"https://schema.org",
+        "@type":"Event",
+        "name": data.eventName,
+        "description": data.theme,
+        "startDate": data.startDate,
+        "endDate": data.endDate,
+        "location": {"@type":"Place","name": data.venue.name,"address": `${data.venue.city}, ${data.venue.country}`},
+        "organizer": [
+          {"@type":"Organization","name":"Institut Pasteur de Bangui"},
+          {"@type":"Organization","name":"Université de Bangui"}
+        ]
+      };
+      const s = document.createElement('script');
+      s.type = 'application/ld+json';
+      s.textContent = JSON.stringify(ld);
+      document.head.appendChild(s);
+
+      ['eventName','theme','datesDisplay'].forEach(k => {
+        document.getElementById(k).textContent = data[k];
+      });
+      document.getElementById('venue').textContent = data.venueDisplay;
+
+      document.getElementById('btn-register').href = data.urls.register;
+      document.getElementById('btn-submit').href = data.urls.submit;
+      document.getElementById('cta-hero-register').href = data.urls.register;
+      document.getElementById('cta-hero-submit').href = data.urls.submit;
+      document.getElementById('cta-register').href = data.urls.register;
+      document.getElementById('cta-submit').href = data.urls.submit;
+
+      const sub = document.getElementById('subthemes');
+      data.subthemes.forEach(t=>{
+        const li = document.createElement('div');
+        li.className="p-4 bg-jsb-gris rounded-xl";
+        li.textContent = t.text;
+        sub.appendChild(li);
+      });
+
+      const ms = document.getElementById('milestones');
+      data.milestones.forEach(m=>{
+        const c=document.createElement('div');
+        c.className="p-4 bg-white rounded-xl shadow-soft";
+        c.innerHTML = `<div class="text-jsb-vert font-semibold">${m.date}</div><div>${m.text}</div>`;
+        ms.appendChild(c);
+      });
+
+      const pr = document.getElementById('pricing');
+      data.pricing.forEach(p=>{
+        pr.insertAdjacentHTML('beforeend', `<tr>
+          <td class="py-2 pr-4">${p.label}</td>
+          <td class="py-2 pr-4 font-medium">${p.fcfa} FCFA</td>
+          <td class="py-2">${p.eur}</td>
+        </tr>`);
+      });
+      if (data.pricingNote) document.getElementById('pricingNote').textContent = data.pricingNote;
+
+      const pg = document.getElementById('program');
+      data.program.forEach(d=>{
+        const card=document.createElement('div');
+        card.className="p-6 bg-white rounded-2xl border border-slate-200 shadow-soft";
+        card.innerHTML = `<h4 class="font-display text-xl text-jsb-bleu mb-2">${d.day}</h4>
+          <ul class="list-disc ml-5">${d.items.map(i=>`<li>${i}</li>`).join('')}</ul>`;
+        pg.appendChild(card);
+      });
+      document.getElementById('link-program').href = data.urls.programPdf || '#';
+      document.getElementById('link-partners').href = data.urls.partnersPdf || '#';
+
+      const co = document.getElementById('coorg');
+      data.coorg.forEach(p=>{
+        co.insertAdjacentHTML('beforeend', `<img src="${p.logo}" alt="${p.alt}" class="h-12 w-auto">`);
+      });
+      const pa = document.getElementById('partners');
+      data.partners.forEach(p=>{
+        pa.insertAdjacentHTML('beforeend', `<img src="${p.logo}" alt="${p.alt}" class="h-12 w-auto mx-auto">`);
+      });
+
+      const faq = document.getElementById('faqList');
+      data.faq.forEach((f,i)=>{
+        const item = document.createElement('details');
+        item.className="bg-white rounded-xl p-4";
+        item.innerHTML = `<summary class="font-medium cursor-pointer">${f.q}</summary>
+                          <div class="mt-2 text-slate-700">${f.a}</div>`;
+        faq.appendChild(item);
+      });
+
+      document.getElementById('address').textContent = data.contact.address;
+      document.getElementById('phone').textContent = data.contact.phone || "";
+      const email = document.getElementById('email');
+      email.textContent = data.contact.email;
+      email.href = `mailto:${data.contact.email}`;
+      document.querySelector('form [name="mailto"]').value = `mailto:${data.contact.email}`;
+    }
+    load();
+  
+    // Load news preview (3 latest)
+    fetch('/content/news.json').then(r=>r.json()).then(data=>{
+      const items = data.items.sort((a,b)=> (b.date > a.date ? 1 : -1)).slice(0,3);
+      const grid = document.getElementById('newsGrid');
+      if (!grid) return;
+      items.forEach(n=>{
+        const card = document.createElement('article');
+        card.className = "bg-white rounded-2xl overflow-hidden shadow border border-slate-200 flex flex-col";
+        card.innerHTML = `
+          <img src="${n.cover || '/LOGO JSB3.png'}" alt="" class="w-full h-44 object-cover" />
+          <div class="p-5 grow">
+            <div class="text-sm text-slate-500 mb-1">${n.date}</div>
+            <h4 class="font-display text-xl text-jsb-bleu mb-2">${n.title}</h4>
+            <p class="text-slate-700">${n.excerpt || ''}</p>
+          </div>`;
+        grid.appendChild(card);
+      });
+    });
+  
+    // Load partner preview (first 12 logos across tiers)
+    fetch('/content/partners.json').then(r=>r.json()).then(data=>{
+      const grid = document.getElementById('partnersGrid');
+      if (!grid) return;
+      const logos = [];
+      (data.tiers||[]).forEach(t => (t.items||[]).forEach(p => logos.push(p.logo || '/LOGO JSB3.png')));
+      logos.slice(0,12).forEach(src => {
+        const cell = document.createElement('div');
+        cell.className="bg-white rounded-xl border border-slate-200 p-3 flex items-center justify-center";
+        cell.innerHTML = `<img src="${src}" class="max-h-12 object-contain" />`;
+        grid.appendChild(cell);
+      });
+    });
+  </script>
+</body>
+</html>
