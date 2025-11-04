@@ -1,43 +1,22 @@
-<!doctype html>
-<html lang="fr">
-<head>
-  <title>Merci — JSB3</title>
-
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <link rel="icon" href="/LOGO JSB3.png" />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Lato:wght@400;500;700&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = { theme:{ extend:{ colors:{ jsb:{ bleu:'#003366', vert:'#4CAF50', gris:'#F2F2F2', accent:'#00B5B2', orange:'#FF9800' } }, fontFamily:{ sans:['Lato','ui-sans-serif','system-ui'], display:['Montserrat','ui-sans-serif'] } } } }
-  </script>
-
-</head>
-<body class="font-sans text-slate-800 bg-white">
-
-<header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-slate-200">
-  <div class="max-w-7xl mx-auto px-4 py-3 flex items-center gap-4">
-    <a href="/#accueil" class="flex items-center gap-3">
-      <img src="/LOGO JSB3.png" class="w-9 h-9" alt="JSB3" />
-      <span class="font-display font-semibold text-jsb-bleu">JSB3 Bangui</span>
-    </a>
-    <nav class="ml-auto hidden md:flex gap-6">
-      <a href="/#apropos" class="hover:text-jsb-accent">À propos</a>
-      <a href="/#dates" class="hover:text-jsb-accent">Dates</a>
-      <a href="/soumettre.html" class="text-jsb-bleu font-medium">Soumettre</a>
-      <a href="/conferenciers.html" class="hover:text-jsb-accent">Conférenciers</a>
-      <a href="/actualites.html" class="hover:text-jsb-accent">Actualités</a>
-      <a href="/#contact" class="hover:text-jsb-accent">Contact</a>
-    </nav>
-  </div>
-</header>
-
-<section class="py-20">
-  <div class="max-w-xl mx-auto px-4 text-center">
-    <h1 class="font-display text-3xl text-jsb-bleu mb-3">Merci pour votre message</h1>
-    <p>Nous vous répondrons rapidement.</p>
-    <a href="/" class="inline-block mt-6 bg-jsb-accent text-white px-4 py-2 rounded-lg">Retour à l’accueil</a>
-  </div>
-</section>
-</body>
-</html>
+import Layout from "../components/Layout";
+export default function Success() {
+  return (
+    <Layout>
+      <div className="container" style={{textAlign: "center"}}>
+        <h1>Merci pour votre envoi !</h1>
+        <p>
+          Votre message ou soumission a bien été reçu.<br />
+          Nous vous répondrons dès que possible.<br /><br />
+          <a style={{
+            color: "#174866",
+            padding: "0.8em 1.6em",
+            background: "#f0f4f8",
+            borderRadius: "6px",
+            textDecoration: "none",
+            fontWeight: 500
+          }} href="/">⇦ Retour à l'accueil</a>
+        </p>
+      </div>
+    </Layout>
+  );
+}
